@@ -1,5 +1,6 @@
 package kigali.shoestock.management.controller;
 
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import kigali.shoestock.management.domain.SaleStatus;
 import kigali.shoestock.management.domain.ShoeSale;
 import kigali.shoestock.management.service.ShoeSaleService;
 
@@ -36,6 +39,21 @@ public class ShoeSaleController {
     @GetMapping (value="/all")
     public ResponseEntity<?> getAllShoeSales(){
         return new ResponseEntity<>(shoeSaleServe.getAllShoeSales(), HttpStatus.OK);
+    }
+
+    @GetMapping (value="/by-status")
+    public ResponseEntity<?> getShoeSalesByStatus(@RequestParam SaleStatus status){
+
+        return new ResponseEntity<>(shoeSaleServe.getShoeSalesByStatus(status), HttpStatus.OK);
+    }
+
+    @GetMapping (value="/between")
+    public ResponseEntity<?> getShoeSalesBetween(@RequestParam String start, @RequestParam String end){
+
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+
+        return new ResponseEntity<>(shoeSaleServe.getShoeSalesBetween(startDate, endDate), HttpStatus.OK);
     }
 
     @GetMapping (value="/{id}")

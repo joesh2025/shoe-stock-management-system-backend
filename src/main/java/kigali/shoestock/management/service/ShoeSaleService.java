@@ -1,5 +1,6 @@
 package kigali.shoestock.management.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -7,6 +8,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kigali.shoestock.management.domain.SaleStatus;
 import kigali.shoestock.management.domain.ShoeSale;
 import kigali.shoestock.management.repository.ShoeSaleRepository;
 
@@ -25,6 +27,14 @@ public class ShoeSaleService {
 
     public List<ShoeSale> getAllShoeSales(){
         return shoeSaleRepo.findAll();
+    }
+
+    public List<ShoeSale> getShoeSalesByStatus(SaleStatus status){
+        return shoeSaleRepo.findByStatusOrderBySaleDateAsc(status);
+    }
+
+    public List<ShoeSale> getShoeSalesBetween(LocalDate start, LocalDate end){
+        return shoeSaleRepo.findBySaleDateBetweenOrderBySaleDate(start, end);
     }
 
     public Optional<ShoeSale> getShoeSaleById(UUID id){
