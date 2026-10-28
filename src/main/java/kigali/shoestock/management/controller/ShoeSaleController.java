@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -33,7 +34,27 @@ public class ShoeSaleController {
 
         String returnedMessage = shoeSaleServe.saveShoeSale(shoeSale);
 
-        return new ResponseEntity<>(returnedMessage, HttpStatus.CREATED);
+        if(returnedMessage.equalsIgnoreCase("Shoe sale saved successfully")){
+            return new ResponseEntity<>(returnedMessage, HttpStatus.CREATED);
+        }else if(returnedMessage.equalsIgnoreCase("Shoe sale date cannot be in the past")){
+            return new ResponseEntity<>(returnedMessage, HttpStatus.BAD_REQUEST);
+        }else{
+            return new ResponseEntity<>(returnedMessage, HttpStatus.CONFLICT);
+        }
+    }
+
+    @PatchMapping (value="/{id}/status")
+    public ResponseEntity<?> changeShoeSaleStatus(@PathVariable UUID id, @RequestParam SaleStatus status){
+
+        String returnedMessage = shoeSaleServe.changeShoeSaleStatus(id, status);
+
+        if(returnedMessage.equalsIgnoreCase("The shoe sale with that id does not exist")){
+            return new ResponseEntity<>(returnedMessage, HttpStatus.NOT_FOUND);
+        }else if(returnedMessage.equalsIgnoreCase("Shoe sale status updated successfully")){
+            return new ResponseEntity<>(returnedMessage, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(returnedMessage, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping (value="/all")

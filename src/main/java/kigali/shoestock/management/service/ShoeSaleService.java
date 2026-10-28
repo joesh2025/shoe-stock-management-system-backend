@@ -20,9 +20,48 @@ public class ShoeSaleService {
 
     public String saveShoeSale(ShoeSale shoeSale){
 
+        if(shoeSale.getSaleDate().isBefore(LocalDate.now())){
+            return "Shoe sale date cannot be in the past";
+        }
+
+        if(shoeSaleRepo.existsByShopAttendantIdAndSaleDateAndStatusNot(shoeSale.getShopAttendant().getId(), shoeSale.getSaleDate(), SaleStatus.CANCELLED)){
+            return "Shop attendant already has a sale on that date";
+        }
+
+        shoeSale.setStatus(SaleStatus.QUOTED);
+
         shoeSaleRepo.save(shoeSale);
 
         return "Shoe sale saved successfully";
+    }
+
+    public String changeShoeSaleStatus(UUID id, SaleStatus status){
+
+        Optional<ShoeSale> found = shoeSaleRepo.findById(id);
+
+        if(found.isEmpty()){
+            return "The shoe sale with that id does not exist";
+        }
+
+        ShoeSale shoeSale = found.get();
+        SaleStatus current = shoeSale.getStatus();
+
+        boolean allowed = false;
+
+        if(current == SaleStatus.QUOTED && (status == SaleStatus.RESERVED || status == SaleStatus.CANCELLED)){
+            allowed = true;
+        }else if(current == SaleStatus.RESERVED && (status == SaleStatus.SOLD || status == SaleStatus.CANCELLED)){
+            allowed = true;
+        }
+
+        if(!allowed){
+            return "Cannot change status from " + current + " to " + status;
+        }
+
+        shoeSale.setStatus(status);
+        shoeSaleRepo.save(shoeSale);
+
+        return "Shoe sale status updated successfully";
     }
 
     public List<ShoeSale> getAllShoeSales(){
@@ -51,7 +90,6 @@ public class ShoeSaleService {
 
         ShoeSale existing = found.get();
         existing.setSaleDate(shoeSale.getSaleDate());
-        existing.setStatus(shoeSale.getStatus());
         existing.setShoeName(shoeSale.getShoeName());
         existing.setSize(shoeSale.getSize());
         existing.setCustomer(shoeSale.getCustomer());

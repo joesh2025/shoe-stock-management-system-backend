@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -43,6 +44,36 @@ public class ShopAttendantController {
     public ResponseEntity<?> getShopAttendantsByShoeLine(@RequestParam String name){
 
         return new ResponseEntity<>(shopAttendantServe.getShopAttendantsByShoeLine(name), HttpStatus.OK);
+    }
+
+    @PutMapping (value="/{shopAttendantId}/shoe-lines/{shoeLineId}")
+    public ResponseEntity<?> addShoeLine(@PathVariable UUID shopAttendantId, @PathVariable UUID shoeLineId){
+
+        String returnedMessage = shopAttendantServe.addShoeLine(shopAttendantId, shoeLineId);
+
+        if(returnedMessage.equalsIgnoreCase("Shoe line added to the shop attendant")){
+            return new ResponseEntity<>(returnedMessage, HttpStatus.OK);
+        }else if(returnedMessage.equalsIgnoreCase("The shop attendant with that id does not exist")
+            || returnedMessage.equalsIgnoreCase("That shoe line does not exist")){
+            return new ResponseEntity<>(returnedMessage, HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(returnedMessage, HttpStatus.CONFLICT);
+        }
+    }
+
+    @PatchMapping (value="/{shopAttendantId}/sales-counter")
+    public ResponseEntity<?> changeSalesCounter(@PathVariable UUID shopAttendantId, @RequestParam int counterNumber){
+
+        String returnedMessage = shopAttendantServe.changeSalesCounter(shopAttendantId, counterNumber);
+
+        if(returnedMessage.equalsIgnoreCase("Sales counter changed successfully")){
+            return new ResponseEntity<>(returnedMessage, HttpStatus.OK);
+        }else if(returnedMessage.equalsIgnoreCase("The shop attendant with that id does not exist")
+            || returnedMessage.equalsIgnoreCase("The sales counter with that counterNumber does not exist")){
+            return new ResponseEntity<>(returnedMessage, HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(returnedMessage, HttpStatus.CONFLICT);
+        }
     }
 
     @GetMapping (value="/{id}")

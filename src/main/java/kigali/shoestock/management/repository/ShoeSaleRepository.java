@@ -17,4 +17,6 @@ public interface ShoeSaleRepository extends JpaRepository<ShoeSale, UUID>{
 
     List<ShoeSale> findBySaleDateBetweenOrderBySaleDate(LocalDate start, LocalDate end);
 
+    boolean existsByShopAttendantIdAndSaleDateAndStatusNot(UUID shopAttendantId, LocalDate saleDate, SaleStatus status);
+
 }
