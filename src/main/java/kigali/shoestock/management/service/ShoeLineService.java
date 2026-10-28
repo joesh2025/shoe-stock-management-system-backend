@@ -27,6 +27,10 @@ public class ShoeLineService {
         return shoeLineRepo.findAll();
     }
 
+    public List<ShoeLine> getUnusedShoeLines(){
+        return shoeLineRepo.findUnusedShoeLines();
+    }
+
     public Optional<ShoeLine> getShoeLineById(UUID id){
         return shoeLineRepo.findById(id);
     }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kigali.shoestock.management.domain.ShopAttendant;
@@ -36,6 +37,12 @@ public class ShopAttendantController {
     @GetMapping (value="/all")
     public ResponseEntity<?> getAllShopAttendants(){
         return new ResponseEntity<>(shopAttendantServe.getAllShopAttendants(), HttpStatus.OK);
+    }
+
+    @GetMapping (value="/by-shoe-line")
+    public ResponseEntity<?> getShopAttendantsByShoeLine(@RequestParam String name){
+
+        return new ResponseEntity<>(shopAttendantServe.getShopAttendantsByShoeLine(name), HttpStatus.OK);
     }
 
     @GetMapping (value="/{id}")

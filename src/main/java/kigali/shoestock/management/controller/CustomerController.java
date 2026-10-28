@@ -1,5 +1,6 @@
 package kigali.shoestock.management.controller;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -43,6 +44,18 @@ public class CustomerController {
     public ResponseEntity<?> getCustomersByLastName(@RequestParam String lastName){
 
         return new ResponseEntity<>(customerServe.getCustomersByLastName(lastName), HttpStatus.OK);
+    }
+
+    @GetMapping (value="/of-shop-attendant/{shopAttendantId}")
+    public ResponseEntity<?> getCustomersOfShopAttendant(@PathVariable UUID shopAttendantId){
+
+        List<Customer> found = customerServe.getCustomersOfShopAttendant(shopAttendantId);
+
+        if(found == null){
+            return new ResponseEntity<>("The shop attendant with that id does not exist", HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(found, HttpStatus.OK);
+        }
     }
 
     @GetMapping (value="/{id}")

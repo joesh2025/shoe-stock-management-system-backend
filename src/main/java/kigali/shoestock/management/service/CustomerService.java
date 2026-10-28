@@ -9,12 +9,16 @@ import org.springframework.stereotype.Service;
 
 import kigali.shoestock.management.domain.Customer;
 import kigali.shoestock.management.repository.CustomerRepository;
+import kigali.shoestock.management.repository.ShopAttendantRepository;
 
 @Service
 public class CustomerService {
 
     @Autowired
     private CustomerRepository customerRepo;
+
+    @Autowired
+    private ShopAttendantRepository shopAttendantRepo;
 
     public String saveCustomer(Customer customer){
 
@@ -29,6 +33,15 @@ public class CustomerService {
 
     public List<Customer> getCustomersByLastName(String lastName){
         return customerRepo.findByLastNameIgnoreCaseOrderByFirstNameAsc(lastName);
+    }
+
+    public List<Customer> getCustomersOfShopAttendant(UUID shopAttendantId){
+
+        if(shopAttendantRepo.findById(shopAttendantId).isEmpty()){
+            return null;
+        }
+
+        return customerRepo.findCustomersOfShopAttendant(shopAttendantId);
     }
 
     public Optional<Customer> getCustomerById(UUID id){

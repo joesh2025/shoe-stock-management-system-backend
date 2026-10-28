@@ -38,6 +38,12 @@ public class ShoeLineController {
         return new ResponseEntity<>(shoeLineServe.getAllShoeLines(), HttpStatus.OK);
     }
 
+    @GetMapping (value="/unused")
+    public ResponseEntity<?> getUnusedShoeLines(){
+
+        return new ResponseEntity<>(shoeLineServe.getUnusedShoeLines(), HttpStatus.OK);
+    }
+
     @GetMapping (value="/{id}")
     public ResponseEntity<?> getShoeLineById(@PathVariable UUID id){
 

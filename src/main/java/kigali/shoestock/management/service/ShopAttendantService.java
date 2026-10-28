@@ -27,6 +27,10 @@ public class ShopAttendantService {
         return shopAttendantRepo.findAll();
     }
 
+    public List<ShopAttendant> getShopAttendantsByShoeLine(String name){
+        return shopAttendantRepo.findShopAttendantsByShoeLineName(name);
+    }
+
     public Optional<ShopAttendant> getShopAttendantById(UUID id){
         return shopAttendantRepo.findById(id);
     }

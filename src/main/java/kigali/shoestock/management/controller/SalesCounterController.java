@@ -38,6 +38,12 @@ public class SalesCounterController {
         return new ResponseEntity<>(salesCounterServe.getAllSalesCounters(), HttpStatus.OK);
     }
 
+    @GetMapping (value="/free")
+    public ResponseEntity<?> getFreeSalesCounters(){
+
+        return new ResponseEntity<>(salesCounterServe.getFreeSalesCounters(), HttpStatus.OK);
+    }
+
     @GetMapping (value="/{id}")
     public ResponseEntity<?> getSalesCounterById(@PathVariable UUID id){
 

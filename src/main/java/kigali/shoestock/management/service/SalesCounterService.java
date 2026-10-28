@@ -27,6 +27,10 @@ public class SalesCounterService {
         return salesCounterRepo.findAll();
     }
 
+    public List<SalesCounter> getFreeSalesCounters(){
+        return salesCounterRepo.findFreeSalesCounters();
+    }
+
     public Optional<SalesCounter> getSalesCounterById(UUID id){
         return salesCounterRepo.findById(id);
     }
