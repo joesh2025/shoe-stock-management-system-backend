@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kigali.shoestock.management.domain.SaleStatus;
 import kigali.shoestock.management.domain.ShoeSale;
@@ -78,6 +79,18 @@ public class ShoeSaleService {
 
     public List<ShoeSale> getShoeSalesBetween(LocalDate start, LocalDate end){
         return shoeSaleRepo.findBySaleDateBetweenOrderBySaleDate(start, end);
+    }
+
+    public List<Object[]> getShoeSalesPerStatus(){
+        return shoeSaleRepo.getShoeSalesPerStatus();
+    }
+
+    @Transactional
+    public String cancelShoeSalesOnDate(UUID shopAttendantId, LocalDate saleDate){
+
+        int cancelled = shoeSaleRepo.cancelShoeSalesOnDate(shopAttendantId, saleDate);
+
+        return cancelled + " shoe sales cancelled";
     }
 
     public Optional<ShoeSale> getShoeSaleById(UUID id){

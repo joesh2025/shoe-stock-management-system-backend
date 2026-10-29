@@ -62,6 +62,18 @@ public class ShoeSaleController {
         return new ResponseEntity<>(shoeSaleServe.getAllShoeSales(), HttpStatus.OK);
     }
 
+    @GetMapping (value="/stats/by-status")
+    public ResponseEntity<?> getShoeSalesPerStatus(){
+
+        return new ResponseEntity<>(shoeSaleServe.getShoeSalesPerStatus(), HttpStatus.OK);
+    }
+
+    @PatchMapping (value="/cancel-day")
+    public ResponseEntity<?> cancelShoeSalesOnDate(@RequestParam UUID shopAttendantId, @RequestParam LocalDate date){
+
+        return new ResponseEntity<>(shoeSaleServe.cancelShoeSalesOnDate(shopAttendantId, date), HttpStatus.OK);
+    }
+
     @GetMapping (value="/by-status")
     public ResponseEntity<?> getShoeSalesByStatus(@RequestParam SaleStatus status){
 
