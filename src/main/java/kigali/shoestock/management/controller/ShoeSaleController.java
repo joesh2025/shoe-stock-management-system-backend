@@ -108,6 +108,8 @@ public class ShoeSaleController {
 
         if(returnedMessage.equalsIgnoreCase("Shoe sale deleted successfully")){
             return new ResponseEntity<>(returnedMessage, HttpStatus.OK);
+        }else if(returnedMessage.equalsIgnoreCase("That shoe sale has stock movements, delete them first")){
+            return new ResponseEntity<>(returnedMessage, HttpStatus.CONFLICT);
         }else{
             return new ResponseEntity<>(returnedMessage, HttpStatus.NOT_FOUND);
         }

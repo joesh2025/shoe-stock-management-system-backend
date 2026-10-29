@@ -11,12 +11,16 @@ import org.springframework.stereotype.Service;
 import kigali.shoestock.management.domain.SaleStatus;
 import kigali.shoestock.management.domain.ShoeSale;
 import kigali.shoestock.management.repository.ShoeSaleRepository;
+import kigali.shoestock.management.repository.StockMovementRepository;
 
 @Service
 public class ShoeSaleService {
 
     @Autowired
     private ShoeSaleRepository shoeSaleRepo;
+
+    @Autowired
+    private StockMovementRepository stockMovementRepo;
 
     public String saveShoeSale(ShoeSale shoeSale){
 
@@ -106,6 +110,10 @@ public class ShoeSaleService {
 
         if(found.isEmpty()){
             return "The shoe sale with that id does not exist";
+        }
+
+        if(stockMovementRepo.existsByShoeSale(found.get())){
+            return "That shoe sale has stock movements, delete them first";
         }
 
         shoeSaleRepo.deleteById(id);
