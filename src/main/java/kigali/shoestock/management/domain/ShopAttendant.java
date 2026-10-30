@@ -36,9 +36,13 @@ public class ShopAttendant {
     @JoinColumn (name="sales_counter_id")
     private SalesCounter salesCounter;
 
-    @ManyToMany
-    @JoinTable (name="shop_attendant_shoe_line")
-    private List<ShoeLine> shoeLines = new ArrayList<>();
+   @ManyToMany
+@JoinTable(
+    name = "shop_attendant_shoe_line",
+    joinColumns = @JoinColumn(name = "shop_attendants_id"),
+    inverseJoinColumns = @JoinColumn(name = "shoe_lines_id")
+)
+private List<ShoeLine> shoeLines = new ArrayList<>();
 
     public UUID getId() {
         return id;

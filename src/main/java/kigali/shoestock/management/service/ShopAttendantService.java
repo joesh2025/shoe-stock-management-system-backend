@@ -13,6 +13,7 @@ import kigali.shoestock.management.domain.ShopAttendant;
 import kigali.shoestock.management.repository.SalesCounterRepository;
 import kigali.shoestock.management.repository.ShoeLineRepository;
 import kigali.shoestock.management.repository.ShopAttendantRepository;
+import kigali.shoestock.management.repository.ShoeSaleRepository;
 
 @Service
 public class ShopAttendantService {
@@ -22,6 +23,8 @@ public class ShopAttendantService {
 
     @Autowired
     private SalesCounterRepository salesCounterRepo;
+    @Autowired
+    private ShoeSaleRepository shoeSaleRepo;
 
     @Autowired
     private ShoeLineRepository shoeLineRepo;
@@ -123,16 +126,26 @@ public class ShopAttendantService {
         return "Shop attendant updated successfully";
     }
 
-    public String deleteShopAttendant(UUID id){
+    public String deleteShopAttendant(UUID id) {
 
-        Optional<ShopAttendant> found = shopAttendantRepo.findById(id);
+    Optional<ShopAttendant> found = shopAttendantRepo.findById(id);
 
-        if(found.isEmpty()){
-            return "The shop attendant with that id does not exist";
-        }
+    if (found.isEmpty()) {
+        return "The shop attendant with that id does not exist";
+    }
 
-        shopAttendantRepo.deleteById(id);
+    if (shoeSaleRepo.existsByShopAttendant_Id(id)) {
+        return "Cannot delete this shop attendant because they have existing sales records";
+    }
 
-        return "Shop attendant deleted successfully";
+    ShopAttendant shopAttendant = found.get();
+
+    shopAttendant.getShoeLines().clear();
+
+    shopAttendantRepo.save(shopAttendant);
+
+    shopAttendantRepo.delete(shopAttendant);
+
+    return "Shop attendant deleted successfully";
     }
 }

@@ -100,15 +100,19 @@ public class ShopAttendantController {
         }
     }
 
-    @DeleteMapping (value="/delete/{id}")
-    public ResponseEntity<?> deleteShopAttendant(@PathVariable UUID id){
+    @DeleteMapping(value = "/delete/{id}")
+public ResponseEntity<?> deleteShopAttendant(@PathVariable UUID id) {
 
-        String returnedMessage = shopAttendantServe.deleteShopAttendant(id);
+String returnedMessage = shopAttendantServe.deleteShopAttendant(id);
 
-        if(returnedMessage.equalsIgnoreCase("Shop attendant deleted successfully")){
-            return new ResponseEntity<>(returnedMessage, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(returnedMessage, HttpStatus.NOT_FOUND);
+if (returnedMessage.equalsIgnoreCase("Shop attendant deleted successfully")) {
+    return new ResponseEntity<>(returnedMessage, HttpStatus.OK);
+
+} else if (returnedMessage.equalsIgnoreCase("The shop attendant with that id does not exist")) {
+    return new ResponseEntity<>(returnedMessage, HttpStatus.NOT_FOUND);
+
+} else {
+    return new ResponseEntity<>(returnedMessage, HttpStatus.CONFLICT);
         }
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import kigali.shoestock.management.domain.Customer;
 import kigali.shoestock.management.repository.CustomerRepository;
 import kigali.shoestock.management.repository.ShopAttendantRepository;
-
+import kigali.shoestock.management.repository.ShoeSaleRepository;
 @Service
 public class CustomerService {
 
@@ -19,6 +19,9 @@ public class CustomerService {
 
     @Autowired
     private ShopAttendantRepository shopAttendantRepo;
+
+    @Autowired
+    private ShoeSaleRepository shoeSaleRepo;
 
     public String saveCustomer(Customer customer){
 
@@ -67,16 +70,20 @@ public class CustomerService {
         return "Customer updated successfully";
     }
 
-    public String deleteCustomer(UUID id){
+    public String deleteCustomer(UUID id) {
 
-        Optional<Customer> found = customerRepo.findById(id);
+    Optional<Customer> found = customerRepo.findById(id);
 
-        if(found.isEmpty()){
-            return "The customer with that id does not exist";
-        }
+    if (found.isEmpty()) {
+        return "The customer with that id does not exist";
+    }
 
-        customerRepo.deleteById(id);
+    if (shoeSaleRepo.existsByCustomer_Id(id)) {
+        return "Cannot delete this customer because they have existing sales records";
+    }
 
-        return "Customer deleted successfully";
+    customerRepo.deleteById(id);
+
+    return "Customer deleted successfully";
     }
 }

@@ -82,15 +82,18 @@ public class CustomerController {
         }
     }
 
-    @DeleteMapping (value="/delete/{id}")
-    public ResponseEntity<?> deleteCustomer(@PathVariable UUID id){
+    @DeleteMapping(value = "/delete/{id}")
+public ResponseEntity<?> deleteCustomer(@PathVariable UUID id) {
 
-        String returnedMessage = customerServe.deleteCustomer(id);
+    String returnedMessage = customerServe.deleteCustomer(id);
 
-        if(returnedMessage.equalsIgnoreCase("Customer deleted successfully")){
-            return new ResponseEntity<>(returnedMessage, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(returnedMessage, HttpStatus.NOT_FOUND);
+    if (returnedMessage.equalsIgnoreCase("Customer deleted successfully")) {
+        return new ResponseEntity<>(returnedMessage, HttpStatus.OK);
+    } else if (returnedMessage.equalsIgnoreCase(
+            "The customer with that id does not exist")) {
+        return new ResponseEntity<>(returnedMessage, HttpStatus.NOT_FOUND);
+    } else {
+        return new ResponseEntity<>(returnedMessage, HttpStatus.CONFLICT);
         }
     }
 }

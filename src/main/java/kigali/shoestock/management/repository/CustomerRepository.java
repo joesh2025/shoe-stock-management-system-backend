@@ -13,6 +13,7 @@ import kigali.shoestock.management.domain.Customer;
 public interface CustomerRepository extends JpaRepository<Customer, UUID>{
 
     List<Customer> findByLastNameIgnoreCaseOrderByFirstNameAsc(String lastName);
+    boolean existsById(UUID id);
 
     @Query("SELECT DISTINCT s.customer FROM ShoeSale s WHERE s.shopAttendant.id = :shopAttendantId")
     List<Customer> findCustomersOfShopAttendant(UUID shopAttendantId);
