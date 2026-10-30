@@ -22,6 +22,10 @@ public interface ShoeSaleRepository extends JpaRepository<ShoeSale, UUID>{
 
     boolean existsByShopAttendantIdAndSaleDateAndStatusNot(UUID shopAttendantId, LocalDate saleDate, SaleStatus status);
 
+    long countBySaleDate(LocalDate saleDate);
+
+    long countByStatus(SaleStatus status);
+
     @Query("SELECT e.status, COUNT(e) FROM ShoeSale e GROUP BY e.status")
     List<Object[]> getShoeSalesPerStatus();
 
