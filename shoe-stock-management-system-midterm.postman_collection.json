@@ -8,7 +8,7 @@
   },
   "item": [
     {
-      "name": "New Request",
+      "name": "A2 - Shoe Sales - Get All",
       "request": {
         "method": "GET",
         "header": [],
@@ -38,7 +38,7 @@
       "response": []
     },
     {
-      "name": "http://localhost:8090/api/shoe-sales/all",
+      "name": "A2 - Shoe Sales - Get All (2)",
       "request": {
         "method": "GET",
         "header": [],
@@ -68,7 +68,7 @@
       "response": []
     },
     {
-      "name": "New Request",
+      "name": "A2 - Shoe Lines - Get All",
       "request": {
         "method": "GET",
         "header": [],
@@ -89,7 +89,7 @@
       "response": []
     },
     {
-      "name": "New Request",
+      "name": "A2 - Shop Attendants - Get All",
       "request": {
         "method": "GET",
         "header": [],
@@ -110,7 +110,7 @@
       "response": []
     },
     {
-      "name": "01 - Shoe Lines - Save",
+      "name": "A2 - Shoe Lines - Save",
       "request": {
         "method": "GET",
         "header": [],
@@ -140,7 +140,7 @@
       "response": []
     },
     {
-      "name": "02 - Shoe Lines - get all",
+      "name": "A2 - Shoe Lines - Get All (2)",
       "request": {
         "method": "GET",
         "header": [],
@@ -170,7 +170,7 @@
       "response": []
     },
     {
-      "name": "03 - Shoe Lines - get by id",
+      "name": "A2 - Shoe Lines - Get By ID",
       "request": {
         "method": "GET",
         "header": [],
@@ -200,7 +200,7 @@
       "response": []
     },
     {
-      "name": "04 - Shoe Lines - update",
+      "name": "A2 - Shoe Lines - Update",
       "request": {
         "method": "PUT",
         "header": [],
@@ -231,7 +231,7 @@
       "response": []
     },
     {
-      "name": "04 - Shoe Lines - delete",
+      "name": "A2 - Shoe Lines - Delete",
       "request": {
         "method": "POST",
         "header": [],
@@ -261,7 +261,7 @@
       "response": []
     },
     {
-      "name": "06 - Sales Counters - Save",
+      "name": "A2 - Sales Counters - Save",
       "request": {
         "method": "POST",
         "header": [],
@@ -291,7 +291,7 @@
       "response": []
     },
     {
-      "name": "07 - Sales Counters - Get All",
+      "name": "A2 - Sales Counters - Get All",
       "request": {
         "method": "GET",
         "header": [],
@@ -321,7 +321,7 @@
       "response": []
     },
     {
-      "name": "08 - Sales Counters - Get By ID",
+      "name": "A2 - Sales Counters - Get By ID",
       "request": {
         "method": "POST",
         "header": [],
@@ -351,7 +351,7 @@
       "response": []
     },
     {
-      "name": "09 - Sales Counters - Update",
+      "name": "A2 - Sales Counters - Update",
       "request": {
         "method": "PUT",
         "header": [],
@@ -382,7 +382,7 @@
       "response": []
     },
     {
-      "name": "10 - Shop Attendants - Save",
+      "name": "A2 - Shop Attendants - Save",
       "request": {
         "method": "GET",
         "header": [],
@@ -412,7 +412,7 @@
       "response": []
     },
     {
-      "name": "11 - Shop Attendants - Get By ID",
+      "name": "A2 - Shop Attendants - Get By ID",
       "request": {
         "method": "PUT",
         "header": [],
@@ -443,7 +443,7 @@
       "response": []
     },
     {
-      "name": "12 - Shop Attendants - Update",
+      "name": "A2 - Shop Attendants - Update",
       "request": {
         "method": "DELETE",
         "header": [],
@@ -474,7 +474,7 @@
       "response": []
     },
     {
-      "name": "13 - Shop Attendants - Delete - Has Sales",
+      "name": "A2 - Shop Attendants - Delete - Has Sales",
       "request": {
         "method": "DELETE",
         "header": [],
@@ -505,7 +505,7 @@
       "response": []
     },
     {
-      "name": "14 - Shop Attendants - Delete - Missing ID",
+      "name": "A2 - Shop Attendants - Delete - Missing ID",
       "request": {
         "method": "POST",
         "header": [],
@@ -535,7 +535,7 @@
       "response": []
     },
     {
-      "name": "15 - Customers - Save",
+      "name": "A2 - Customers - Save",
       "request": {
         "method": "GET",
         "header": [],
@@ -565,7 +565,7 @@
       "response": []
     },
     {
-      "name": "16 - Customers - Get By ID",
+      "name": "A2 - Customers - Get By ID",
       "request": {
         "method": "PUT",
         "header": [],
@@ -596,7 +596,7 @@
       "response": []
     },
     {
-      "name": "17 - Customers - update",
+      "name": "A2 - Customers - Update",
       "request": {
         "method": "DELETE",
         "header": [],
@@ -627,7 +627,7 @@
       "response": []
     },
     {
-      "name": "18 - Customer - Delete - Has Sales",
+      "name": "A2 - Customers - Delete - Has Sales",
       "request": {
         "method": "DELETE",
         "header": [],
@@ -658,7 +658,7 @@
       "response": []
     },
     {
-      "name": "19 - Customer - Delete - without Sales",
+      "name": "A2 - Customers - Delete - Without Sales",
       "request": {
         "method": "POST",
         "header": [],
@@ -688,7 +688,7 @@
       "response": []
     },
     {
-      "name": "20 - Shoe Sales - Save",
+      "name": "A2 - Shoe Sales - Save",
       "request": {
         "method": "GET",
         "header": [],
@@ -718,7 +718,7 @@
       "response": []
     },
     {
-      "name": "21 - Shoe Sales - get all",
+      "name": "A2 - Shoe Sales - Get All (3)",
       "request": {
         "method": "GET",
         "header": [],
@@ -748,7 +748,7 @@
       "response": []
     },
     {
-      "name": "22 - Shoe Sales - get by id",
+      "name": "A2 - Shoe Sales - Get By ID",
       "request": {
         "method": "PUT",
         "header": [],
@@ -779,7 +779,7 @@
       "response": []
     },
     {
-      "name": "23 - Shoe Sales - update",
+      "name": "A2 - Shoe Sales - Update",
       "request": {
         "method": "DELETE",
         "header": [],
@@ -810,7 +810,7 @@
       "response": []
     },
     {
-      "name": "24 - Shoe Sales - delete",
+      "name": "A2 - Shoe Sales - Delete",
       "request": {
         "method": "GET",
         "header": [],
@@ -840,7 +840,7 @@
       "response": []
     },
     {
-      "name": "25 - \tShoe Lines - Missing ID",
+      "name": "A2 - Shoe Lines - Missing ID",
       "request": {
         "method": "GET",
         "header": [],
@@ -1788,7 +1788,7 @@
       "response": []
     },
     {
-      "name": "E2 -Try saving movement for a non-SOLD sale",
+      "name": "E1 - Try saving movement for a non-SOLD sale",
       "request": {
         "method": "POST",
         "header": [],
@@ -1824,7 +1824,7 @@
       "response": []
     },
     {
-      "name": "E3 -Try saving movement for a nonexistent sale",
+      "name": "E1 - Try saving movement for a nonexistent sale",
       "request": {
         "method": "POST",
         "header": [],
@@ -1860,7 +1860,7 @@
       "response": []
     },
     {
-      "name": "E4 - Get stock movements by customer code",
+      "name": "E2 - Get stock movements by customer code",
       "request": {
         "method": "GET",
         "header": [],
@@ -1891,7 +1891,7 @@
       "response": []
     },
     {
-      "name": "E5 - delete stock movements",
+      "name": "E3 - Delete stock movements",
       "request": {
         "method": "DELETE",
         "header": [],
@@ -1922,7 +1922,7 @@
       "response": []
     },
     {
-      "name": "E6 - delete non- existing stock movement",
+      "name": "E3 - Delete non-existing stock movement",
       "request": {
         "method": "DELETE",
         "header": [],
@@ -2024,7 +2024,7 @@
       "response": []
     },
     {
-      "name": "F3 - Verify SOLD Sale Is Not Cancelled",
+      "name": "F2 - Verify SOLD Sale Is Not Cancelled",
       "request": {
         "method": "GET",
         "header": [],
@@ -2054,7 +2054,7 @@
       "response": []
     },
     {
-      "name": "pagination",
+      "name": "+5 - Shoe sales page by page",
       "request": {
         "method": "GET",
         "header": [],
@@ -2098,7 +2098,7 @@
       "response": []
     },
     {
-      "name": "Dashboard summary",
+      "name": "+5 - Dashboard summary",
       "request": {
         "method": "GET",
         "header": [],
